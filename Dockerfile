@@ -51,24 +51,8 @@ RUN apt-get install -y openssh-server
 RUN mkdir /opt/liquibase
 
 WORKDIR /opt/liquibase
-RUN echo https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/liquibase-3.5.3-bin.tar.gz | xargs wget -O- -O tmp.tar.gz && \
-        tar -zxf tmp.tar.gz && \
-    	rm -f tmp.tar.gz
-RUN chmod +x /opt/liquibase/liquibase
 
-# Symlink to liquibase to be on the path
-RUN ln -s /opt/liquibase/liquibase /usr/local/bin/
-
-# Get the postgres JDBC driver from http://jdbc.postgresql.org/download.html
-# ADD http://jdbc.postgresql.org/download/postgresql-9.3-1102.jdbc41.jar /opt/jdbc_drivers/
-RUN mkdir /opt/jdbc_drivers/
-RUN echo https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar | xargs wget -O- -O /tmp/postgresql-9.4.1212.jar
-
-RUN ln -s /opt/jdbc_drivers/postgresql-9.4.1212.jar /usr/local/bin/
-
-# Add command scripts
-ADD scripts /opt/liquibase/scripts
-RUN chmod -R +x /opt/liquibase/scripts
+COPY conf /opt/liquibase
 
 ##################################
 # liquibase Section End

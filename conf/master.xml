@@ -1,0 +1,18 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <!--includeAll path="db_maint/" relativeToChangelogFile="true" filter="sql"/-->
+  <!--includeAll path="metadata/" relativeToChangelogFile="true" filter="sql"/-->
+  <includeAll path="lookup_data/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="monitor/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="marketing/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="product/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="sales/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="reports/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="metadata/" relativeToChangelogFile="true" filter="sql"/>
+  <includeAll path="finance/" relativeToChangelogFile="true" filter="sql"/>
+  <!-- Tableau Data -->
+  <!--<includeAll path="tableau_data/" relativeToChangelogFile="true" filter="sql"/>-->
+</databaseChangeLog>
