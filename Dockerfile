@@ -1,16 +1,53 @@
 FROM debian:latest
 MAINTAINER Manuel Mueller
 
+# get base
 RUN apt-get update && apt-get upgrade -y
 
-#java
-RUN apt-get -y install default-jre default-jdk wget ant git nano procps
+##################################
+# java Section Start
+##################################
+
+#java and system files
+RUN apt-get -y install default-jre default-jdk wget ant git nano procps unzip
 #set JAVA_HOME
 RUN JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 
-# download liquibase
-# ADD http://sourceforge.net/projects/liquibase/files/Liquibase%20Core/liquibase-3.2.2-bin.tar.gz/download /tmp/liquibase-3.2.2-bin.tar.gz
+##################################
+# liquibase Section end
+##################################
 
+##################################
+# SSH Section Start
+##################################
+
+RUN apt-get install -y openssh-server
+
+##################################
+# SSH Section End
+##################################
+# Get Pentaho Server
+
+RUN echo https://sourceforge.net/projects/pentaho/files/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip/download | xargs wget -O- -O tmp.zip && \
+    unzip -q tmp.zip -d /opt && \
+    rm -f tmp.zip && \
+    mv data-integration pentaho
+
+##################################
+# Pentaho Section Start
+##################################
+
+RUN apt-get install -y openssh-server
+
+##################################
+# Pentaho Section End
+##################################
+
+##################################
+# liquibase Section Start
+##################################
+
+# download liquibase
 # Create a directory for liquibase
 RUN mkdir /opt/liquibase
 
@@ -34,7 +71,12 @@ RUN ln -s /opt/jdbc_drivers/postgresql-9.4.1212.jar /usr/local/bin/
 ADD scripts /opt/liquibase/scripts
 RUN chmod -R +x /opt/liquibase/scripts
 
-VOLUME ["/changelogs"]
+##################################
+# liquibase Section End
+##################################
+
+# Expose web port
+EXPOSE 8080, 666
 
 WORKDIR /
 
