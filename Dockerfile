@@ -76,4 +76,6 @@ RUN chmod -R +x /opt/liquibase/scripts
 
 WORKDIR /
 
+EXPOSE 22
+
 ENTRYPOINT ["/bin/bash"]
