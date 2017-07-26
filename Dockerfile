@@ -30,9 +30,8 @@ RUN apt-get install -y openssh-server
 
 RUN echo https://sourceforge.net/projects/pentaho/files/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip/download | xargs wget -O- -O tmp.zip && \
     unzip -q tmp.zip -d /opt && \
-    rm -f tmp.zip && \
-    mv data-integration pentaho
-
+    rm -f tmp.zip
+RUN mv /opt/data-integration /opt/pentaho
 ##################################
 # Pentaho Section Start
 ##################################
@@ -76,7 +75,7 @@ RUN chmod -R +x /opt/liquibase/scripts
 ##################################
 
 # Expose web port
-EXPOSE 8080, 666
+EXPOSE 8080 666
 
 WORKDIR /
 
