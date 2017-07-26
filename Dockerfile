@@ -9,7 +9,7 @@ RUN apt-get update && apt-get upgrade -y
 ##################################
 
 #java and system files
-RUN apt-get -y install default-jre default-jdk wget ant git nano procps unzip
+RUN apt-get -y install default-jre default-jdk wget ant git nano procps unzip maven
 #set JAVA_HOME
 RUN JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 
