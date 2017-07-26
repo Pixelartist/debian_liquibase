@@ -74,9 +74,6 @@ RUN chmod -R +x /opt/liquibase/scripts
 # liquibase Section End
 ##################################
 
-# Expose web port
-EXPOSE 8080 666
-
 WORKDIR /
 
 ENTRYPOINT ["/bin/bash"]
