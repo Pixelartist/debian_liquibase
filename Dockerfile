@@ -49,9 +49,7 @@ RUN apt-get install -y openssh-server
 # download liquibase
 # Create a directory for liquibase
 RUN mkdir /opt/liquibase
-
 WORKDIR /opt/liquibase
-
 COPY conf /opt/liquibase
 
 ##################################
