@@ -65,6 +65,7 @@ RUN mv /opt/data-integration /opt/pentaho
 ##################################
 # moved git liquibase clone to shell due to ENV restriction: https://stackoverflow.com/questions/34911622/dockerfile-set-env-to-result-of-command
 COPY scripts /
+RUN chmod u+x build_liquibase.sh
 RUN ./build_liquibase.sh
 
 ##################################
